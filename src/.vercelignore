@@ -1,0 +1,7 @@
+build.py
+**/__pycache__/**
+**/*.pyc
+**/*.log
+**/.env*
+**/*.secure
+**/*.db

@@ -1,0 +1,33 @@
+#sarasCompanion[hidden],#assistantPanel[hidden],#mouseCharacter[hidden]{display:none!important}
+#mouseCharacter{position:fixed;left:calc(100vw - 64px);top:12px;width:64px;height:68px;padding:0;border:0;background:transparent!important;box-shadow:none;z-index:45;overflow:hidden;transition:opacity .6s ease;touch-action:manipulation}
+.hamster-sprite{display:block;position:relative;width:64px;height:64px;background-image:url('/runtime-assets/hamster-atlas.png');background-size:300% 200%;background-position:0 0;animation:hamster-life 6.5s steps(1,end) infinite;filter:drop-shadow(0 1px 1px #0002);transition:transform .8s ease}
+#mouseCharacter[data-pose="peek"] .hamster-sprite{clip-path:none}
+#mouseCharacter[data-pose="eyes"] .hamster-sprite{clip-path:none}
+#mouseCharacter[data-side="left"][data-pose="peek"] .hamster-sprite,#mouseCharacter[data-side="left"][data-pose="eyes"] .hamster-sprite{transform:perspective(220px) translateX(-30px) rotate(90deg) rotateX(var(--gaze-pitch,0deg)) rotateY(var(--gaze-yaw,0deg)) scaleX(var(--gaze-mirror,1))}
+#mouseCharacter[data-side="right"][data-pose="peek"] .hamster-sprite,#mouseCharacter[data-side="right"][data-pose="eyes"] .hamster-sprite{transform:perspective(220px) translateX(30px) rotate(-90deg) rotateX(var(--gaze-pitch,0deg)) rotateY(var(--gaze-yaw,0deg)) scaleX(var(--gaze-mirror,1))}
+#mouseCharacter[data-pose="walk"] .hamster-sprite{animation:hamster-steps .65s steps(1,end) 4,hamster-life 6.5s steps(1,end) 3s infinite}
+#mouseCharacter[data-pose="hide"]{opacity:0;pointer-events:none}
+.hamster-muzzle{display:none;position:absolute;left:25px;top:27px;width:14px;height:9px;background-image:url('/runtime-assets/hamster-atlas.png');background-size:192px 128px;background-position:-25px -27px}
+#mouseCharacter.is-speaking{opacity:1;pointer-events:auto}
+#mouseCharacter.is-speaking .hamster-sprite{transform:none!important;clip-path:none!important;animation:none;transition:none;background-position:0 0!important}
+#mouseCharacter.is-speaking .hamster-sprite.rig-ready{background-image:none}
+#mouseCharacter.is-speaking .hamster-muzzle{display:none}
+.speech-rig{display:none;width:64px;height:64px;position:absolute;inset:0}
+#mouseCharacter.is-speaking .speech-rig{display:block}
+#mouseCharacter:focus-visible{outline:2px solid #3694c1;border-radius:12px;opacity:1;pointer-events:auto}
+#mouseCharacter:focus-visible .hamster-sprite{clip-path:none}
+.motion-paused *{animation:none!important;transition:none!important}
+#assistantPanel{position:fixed;right:16px;bottom:90px;width:min(420px,calc(100% - 32px));max-height:calc(100dvh - 120px);overflow:auto;z-index:55;border:1px solid #92ada4;background:#fafdf7;color:#173d36;border-radius:22px;padding:16px;box-shadow:0 12px 60px #0004;margin:0;box-sizing:border-box}
+.assistant-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;position:sticky;top:0;background:inherit;z-index:1}.assistant-heading button{padding:4px 12px;font-size:23px}#assistantMessages{min-height:100px;max-height:35dvh;overflow:auto;overscroll-behavior:contain}#assistantMessages .bubble{white-space:pre-wrap;overflow-wrap:anywhere;margin:8px 0;padding:10px;font-size:14px}#assistantText{min-height:70px;width:100%;box-sizing:border-box}#assistantPanel label{font-size:13px}#assistantPanel button{margin:4px 3px;padding:9px 12px}#assistantPlan{white-space:pre-wrap;overflow-wrap:anywhere;max-height:180px;overflow:auto}#assistantHealth,.assistant-help{font-size:12px}#assistantReview{border:1px solid #98b6a5;border-radius:12px;padding:10px}.assistant-options{display:flex;align-items:center;flex-wrap:wrap;gap:4px}.assistant-options label{display:flex;gap:5px;align-items:center}.assistant-options input{width:auto}#assistantEmergency{background:#a54236;color:#fff}
+@keyframes hamster-life{0%,38%,43%,70%,79%,100%{background-position:0 0}39%,42%{background-position:50% 0}71%,78%{background-position:100% 0}}
+@keyframes hamster-blink{0%,43%,48%,100%{background-position:0 0}44%,47%{background-position:50% 0}}
+@keyframes hamster-steps{0%,100%{background-position:0 100%}50%{background-position:50% 100%}}
+@keyframes hamster-talk{from{transform:translateY(0)}to{transform:translateY(.8px)}}
+@media(prefers-reduced-motion:reduce){#sarasCompanion *{animation:none!important;transition:none!important}}
+@media(max-width:520px){#assistantPanel{left:8px;right:8px;bottom:80px;width:auto}}
+
+#mouseCharacter[data-side="left"][data-pose="eyes"] .hamster-sprite{transform:perspective(220px) translateX(-40px) rotate(90deg) rotateY(var(--gaze-yaw,0deg)) scaleX(var(--gaze-mirror,1))}
+#mouseCharacter[data-side="right"][data-pose="eyes"] .hamster-sprite{transform:perspective(220px) translateX(40px) rotate(-90deg) rotateY(var(--gaze-yaw,0deg)) scaleX(var(--gaze-mirror,1))}
+#mouseCharacter.is-curious .hamster-sprite{background-position:100% 0;animation:none}
+#mouseCharacter.is-curious[data-focus-blink="1"] .hamster-sprite{background-position:50% 0}
+
